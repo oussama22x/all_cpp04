@@ -17,10 +17,12 @@ Character::Character(Character const &src)
 
 Character::~Character()
 {
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 4; i++) {
+        std::cout << "addrr: " << i << "  " << inventory[i] << std::endl;
         if (inventory[i])
             delete inventory[i];
-}   
+    }
+}
 
 Character &Character::operator=(Character const &src)
 {
@@ -41,6 +43,7 @@ std::string const &Character::getName() const
 {
     return (name);
 }
+
 void Character::equip(AMateria *m)
 {
     for (int i = 0; i < 4; i++)
@@ -51,8 +54,8 @@ void Character::equip(AMateria *m)
             return ;
         }
     }
-    //in case of full inventory
 }
+
 void Character::unequip(int idx)
 {
     if (idx >= 0 && idx < 4)

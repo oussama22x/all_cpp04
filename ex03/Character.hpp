@@ -2,6 +2,11 @@
 #define CHARACTER_HPP
 #include "ICharacter.hpp"
 
+struct trash {
+    AMateria *ptr;
+    trash *next;
+};
+
 class Character : public ICharacter
 {
     private:
