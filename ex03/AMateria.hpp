@@ -2,9 +2,10 @@
 # define AMATERIA_HPP
 
 # include <iostream>
-#include "ICharacter.hpp"
-#include "Character.hpp"
+# include "ICharacter.hpp"
+
 class ICharacter;
+
 class AMateria
 {
     protected:
@@ -19,5 +20,8 @@ class AMateria
         virtual AMateria*   clone() const = 0;
         virtual void        use(ICharacter& target);
 };
+
+
+
 
 #endif

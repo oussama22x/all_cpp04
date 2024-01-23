@@ -2,17 +2,11 @@
 #define CHARACTER_HPP
 #include "ICharacter.hpp"
 
-struct trash {
-    AMateria *ptr;
-    trash *next;
-};
-
 class Character : public ICharacter
 {
     private:
         std::string name;
         AMateria *inventory[4];
-        AMateria *SAVE_DROBED[4];
     public:
         Character(std::string const &name);
         Character(Character const &src);

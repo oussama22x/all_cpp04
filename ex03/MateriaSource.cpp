@@ -8,8 +8,10 @@ MateriaSource::MateriaSource()//default constructor
 
 MateriaSource::MateriaSource(MateriaSource const &src)//deee copy constructor
 {
-    for (int i = 0; i < 4; i++)
+    int i = 0;
+    for ( i = 0; i < 4; i++)
         this->inventory[i] = src.inventory[i]->clone();
+        lst_add_back(lst_new(this->inventory[i]), &head);
 }
 
 MateriaSource::~MateriaSource()//destructor

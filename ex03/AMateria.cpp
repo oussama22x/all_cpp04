@@ -2,7 +2,7 @@
 #include "ICharacter.hpp"
 AMateria::AMateria()
 {
-    type = "unknown\n";
+    type = "";
 };
 
 AMateria::AMateria(std::string const & type)//deep copy
