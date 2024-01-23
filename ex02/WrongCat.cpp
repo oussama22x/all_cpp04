@@ -1,8 +1,8 @@
 #include "WrongCat.hpp"
 #include "WrongCat.hpp"
-WrongCat::WrongCat()
+WrongCat::WrongCat() : WrongAnimal()
 {
-     type =  "unknown\n";
+     type =  "unknown";
      std::cout << "Wrong Animal constructor called\n";
 }
 
@@ -11,7 +11,7 @@ WrongCat::~WrongCat()
     std::cout << "Wrong Animal destructor called\n";
 }
 
-WrongCat::WrongCat(const WrongCat &src)
+WrongCat::WrongCat(const WrongCat &src) : WrongAnimal(src)
 {
     std::cout << "Wrong Animal copy constructor called\n";
     this->type = src.type;

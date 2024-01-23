@@ -5,7 +5,7 @@ AMateria::AMateria()
     type = "";
 };
 
-AMateria::AMateria(std::string const & type)//deep copy
+AMateria::AMateria(std::string const & type)
 {
     this->type = type;
 };
@@ -15,7 +15,7 @@ AMateria::AMateria(const AMateria &SRC)
     this->type = SRC.type;
 };
 
-AMateria& AMateria::operator=(const AMateria &SRC)//DEEP COPY
+AMateria& AMateria::operator=(const AMateria &SRC)
 {
     if (this != &SRC)
     {

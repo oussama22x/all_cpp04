@@ -1,13 +1,13 @@
-# pragma once
+#ifndef TRASH_HPP
+#define TRASH_HPP
 
-# include "AMateria.hpp"
-
-struct trash{
+typedef struct trash
+{
     void *ptr;
-    trash *next;
-};
-
-trash *lst_new(AMateria *ptr);
+    struct trash *next;
+} trash;
+extern trash *head;
+trash *lst_new(void *ptr);
 void lst_add_back(trash *node);
 
-trash *head;
+#endif

@@ -13,7 +13,7 @@ Dog::~Dog()
     std::cout << "Dog destructor: Destroying a dog.\n";
 }
 
-Dog::Dog(const Dog &src)
+Dog::Dog(const Dog &src) : AAnimal(src)
 {
      std::cout << "Dog copy constructor called\n";
      this->type = src.type;

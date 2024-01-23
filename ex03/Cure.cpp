@@ -14,7 +14,10 @@ Cure::~Cure()
 
 Cure &Cure::operator=(const Cure &copy)
 {
-    AMateria::operator=(copy);
+    if(this != &copy)
+    {
+        this->type = copy.type;//base class
+    }
     return (*this);
 }
 

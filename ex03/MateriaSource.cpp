@@ -1,5 +1,7 @@
 #include "MateriaSource.hpp"
-
+#include "Character.hpp"
+#include "Ice.hpp"
+#include "Cure.hpp"
 MateriaSource::MateriaSource()//default constructor
 {
     for (int i = 0; i < 4; i++)
@@ -8,28 +10,29 @@ MateriaSource::MateriaSource()//default constructor
 
 MateriaSource::MateriaSource(MateriaSource const &src)//deee copy constructor
 {
-    int i = 0;
-    for ( i = 0; i < 4; i++)
-        this->inventory[i] = src.inventory[i]->clone();
-        lst_add_back(lst_new(this->inventory[i]), &head);
+    
+    for ( int i = 0; i < 4; i++)
+    {
+        if(src.inventory[i])
+            this->inventory[i] = src.inventory[i]->clone();
+       lst_add_back(lst_new(this->inventory[i]));
+    }
 }
 
 MateriaSource::~MateriaSource()//destructor
 {
-    for (int i = 0; i < 4; i++)
-        if (this->inventory[i])
-            delete this->inventory[i];
 }
 
-MateriaSource &MateriaSource::operator=(MateriaSource const &rhs)//assignation operator overload
+MateriaSource &MateriaSource::operator=(MateriaSource const &src)//assignation operator overload
 {
-    if (this != &rhs)
+    if (this != &src)
     {
         for (int i = 0; i < 4; i++)
         {
-            if (this->inventory[i])
-                this->savedrobe[i] = this->inventory[i];
-            this->inventory[i] = rhs.inventory[i]->clone();
+            if(src.inventory[i])
+                this->inventory[i] = src.inventory[i]->clone();
+            else
+                this->inventory[i] = NULL;
         }
     }
     return (*this);
@@ -39,23 +42,23 @@ void MateriaSource::learnMateria(AMateria *m)//learnMateria function
 {
     for (int i = 0; i < 4; i++)
     {
-
         if (!this->inventory[i])
         {
             this->inventory[i] = m;
-            break;
+            lst_add_back(lst_new(this->inventory[i]));
+            return ;
         }
-
     }
-
 }
 
 AMateria *MateriaSource::createMateria(std::string const &type)//createMateria function
 {
-    for (int i = 0; i < 4; i++)
-    {
-        if (this->inventory[i] && this->inventory[i]->getType() == type)
-            return (this->inventory[i]->clone());
-    }
-    return (0);
+    AMateria *tmp;
+
+    tmp = NULL;
+    if(type == "ice")
+        tmp = new Ice();
+    else if(type == "cure")
+        tmp = new Cure();
+    return (tmp);
 }

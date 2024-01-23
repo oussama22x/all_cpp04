@@ -1,14 +1,5 @@
 #include "Character.hpp"
-
-struct trash{
-    void *ptr;
-    trash *next;
-};
-
-trash *lst_new(AMateria *ptr);
-void lst_add_back(trash *node);
-
-trash *head;
+#include "trash.hpp"
 
 
 Character::Character(std::string const &name) : name(name)
@@ -17,55 +8,18 @@ Character::Character(std::string const &name) : name(name)
         inventory[i] = NULL;
 }
 
-trash* lst_new(AMateria *ptr)
-{
-    trash *tmp = new trash;
-    tmp->ptr = ptr;
-    tmp->next = NULL;
-    return tmp;
-}
-
-void lst_add_back(trash *node)
-{
-    trash *tmp;
-
-    tmp = NULL;
-    if(!head) {
-        head->next = node;
-    }
-    else
-    {
-        tmp = (head);
-        while(tmp)
-        {
-            if(tmp->next == NULL)
-            {
-                tmp->next = node;
-            }
-            tmp = tmp->next;
-        }
-    }
-}
-
-
-
 Character::Character(Character const &src)
 {
     this->name = src.getName();
     for(int i = 0; i < 4; i++)
     {
         this->inventory[i] = src.inventory[i]->clone();
-        lst_add_back(lst_new(this->inventory[i]));
+            lst_add_back(lst_new(this->inventory[i]));
     }
 }
 
 Character::~Character()
 {
-    for (int i = 0; i < 4; i++) {
-        std::cout << "addrr: " << i << "  " << inventory[i] << std::endl;
-        if (inventory[i])
-            delete inventory[i];
-    }
 }
 
 Character &Character::operator=(Character const &src)
@@ -73,11 +27,13 @@ Character &Character::operator=(Character const &src)
     if (this != &src)
     {
         name = src.name;
+        
         for (int i = 0; i < 4; i++)
         {
-            if (inventory[i])
-                delete inventory[i];
-            inventory[i] = src.inventory[i]->clone();
+            if(src.inventory[i])
+                inventory[i] = src.inventory[i]->clone();
+            else
+                inventory[i] = NULL;
         }
     }
     return (*this);
@@ -104,7 +60,7 @@ void Character::unequip(int idx)
 {
     if (idx >= 0 && idx < 4)
     {
-        
+        lst_add_back(lst_new(inventory[idx]));
         inventory[idx] = NULL;
     }
     

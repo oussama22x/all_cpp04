@@ -1,15 +1,15 @@
 NAME=Animal
 SRC =  main.cpp cat.cpp Dog.cpp AAnimal.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
 OBJ=$(SRC:.cpp=.o)
-cc=g++
-CPPFLAGS =  -std=c++98
+CXX=g++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 all:$(NAME)
 
 $(NAME): $(OBJ)
-	$(cc) $(CPPFLAGS) $(OBJ) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 clean:
-	rm $(OBJ)
+	@rm -f $(OBJ)
 fclean: clean
-	rm  $(NAME)
+	@rm  -f $(NAME)
 re: fclean all

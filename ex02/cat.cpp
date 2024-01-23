@@ -13,7 +13,7 @@ Cat::~Cat()
     std::cout << "Cat destructor: Destroying a cat.\n";
 }
 
-Cat::Cat(const Cat &src) 
+Cat::Cat(const Cat &src) : AAnimal(src)
 {
     std::cout << "Cat copy constructor called\n";
     this->type = src.type;
